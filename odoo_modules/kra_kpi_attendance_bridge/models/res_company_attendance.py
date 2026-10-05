@@ -26,3 +26,12 @@ class ResCompanyKraAttendance(models.Model):
              'attendance, admins also see the team for a day. Clients never '
              'see it. Off by default.',
     )
+
+    kra_auto_create_employee = fields.Boolean(
+        string='KRA Users Get an Employee Automatically',
+        default=True,
+        help='Attendance is kept per employee, KRA per user. When on, a KRA '
+             'user without an employee is linked to one on install and on '
+             'their first Start Workday: an unlinked employee with the same '
+             'work email, or a new one. Turn off to link people by hand.',
+    )

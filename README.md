@@ -50,7 +50,7 @@ Both modules are in [odoo_modules/](odoo_modules/) and target **Odoo 19**.
 | Module | Purpose |
 |---|---|
 | `hr_attendance_369` | Attendance Suite — late tracking & deductions, leave requests, work-from-home, monthly employee reports and device registration in one module. Depends on `base`, `web`, `hr`, `hr_attendance`. |
-| `kra_kpi_attendance_bridge` | Starting a KRA/KPI workday records an HR attendance check-in, and ending it writes the check-out. Depends on `hr_attendance_369` + `kra_kpi_module`; auto-installs only where both are present. |
+| `kra_kpi_attendance_bridge` | Starting a KRA/KPI workday records an HR attendance check-in, and ending it writes the check-out. Every KRA user is linked to an HR employee (matched by work email, or created) on install and on their first Start Workday. Depends on `hr_attendance_369` + `kra_kpi_module`; auto-installs only where both are present. |
 
 The bridge is optional — install it only alongside the
 [KRA_KPI](https://github.com/Sri-balakumar/kra_kpi) app's module.

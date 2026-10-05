@@ -1,6 +1,6 @@
 {
     'name': 'KRA/KPI Workday -> Attendance Bridge',
-    'version': '19.0.3.1.0',
+    'version': '19.0.3.2.0',
     'category': 'Human Resources/Attendance',
     'summary': 'Starting a KRA/KPI workday records an HR attendance check-in, '
                'and ending it writes the check-out',
@@ -28,6 +28,12 @@
         database, and kra_kpi_module is never modified at all. `auto_install`
         means Odoo adds this bridge by itself once both parents are present, so
         there is nothing to remember at install time.
+
+        **Employees for KRA users.** Attendance is kept per hr.employee, KRA
+        per res.users. On install, upgrade and every Start Workday the bridge
+        links each KRA user to an employee: an unlinked one with the same work
+        email, or a new one. Turn it off with the company field "KRA Users Get
+        an Employee Automatically" to link people by hand.
 
         Nothing else needs configuring, but the bridge can be switched off per
         company or department with "KRA Workday Creates Attendance" on the
@@ -61,5 +67,6 @@
     # Installs itself as soon as BOTH parents are installed, and stays out of
     # the way on databases that only have one of them.
     'auto_install': True,
+    'post_init_hook': 'post_init_hook',
     'license': 'LGPL-3',
 }

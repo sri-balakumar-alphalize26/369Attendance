@@ -127,6 +127,10 @@ class KpiWorkSessionAttendanceBridge(models.Model):
             return self.hr_attendance_id
 
         employee = self._kra_employee()
+        if not employee and self.user_id:
+            # First workday of someone KRA knows but HR does not: link or
+            # create their employee now instead of dropping the day.
+            employee = self.user_id._kra_ensure_employee()
         if not employee:
             _logger.warning(
                 "[kra-attendance] no hr.employee linked to user %s (%s) -- "
